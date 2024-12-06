@@ -1,20 +1,21 @@
 package frc.robot.subsystems;
-import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 public class Tapita {
     
     
         //hardware
-        static TalonFX MotorTapita;
-    
+        static CANSparkMax MotorTapita;
+        
         //lógica
         double speed;
     
         //constructor
         public Tapita(){
-        MotorTapita = new TalonFX(0);
-    
-        speed = 0; //aquí dejalo 0, solo cambia la speed en funcioness
+            MotorTapita = new CANSparkMax(6, MotorType.kBrushless);
+            speed = 0; //aquí dejalo 0, solo cambia la speed en funcioness
         }
     
         //Funciones
@@ -35,5 +36,19 @@ public class Tapita {
         }
           MotorTapita.set(-speed);
         }
+
+
+
+
+
+
+
+
+
+
+        //AUTONOMO
+   public static void AutoIntake(double realtapitaspeedM1){
+    MotorTapita.set(+realtapitaspeedM1);
+}
     }
 

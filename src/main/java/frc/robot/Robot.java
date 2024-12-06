@@ -7,10 +7,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Auto.Turnleft;
+import frc.robot.Auto.Turnright;
+import frc.robot.Auto.Actions.MoveForward;
+import frc.robot.Auto.Actions.Stop;
 import frc.robot.ControlBoard.control;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.IntakePelotas;
 import frc.robot.subsystems.Tapita;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,6 +33,10 @@ public class Robot extends TimedRobot {
   control mControl;
   IntakePelotas mIntake;
   Tapita mTapita;
+  MoveForward mMoveForward;
+  Stop mStop;
+  Turnright mTurnright;
+  Turnleft mTurnleft;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -42,6 +51,8 @@ public class Robot extends TimedRobot {
     mControl = new control();
     mIntake = new IntakePelotas();
     mTapita = new Tapita();
+
+    
   }
 
   /**
@@ -97,8 +108,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     mChasis.avanzar(mControl.left_Y_stick_driver(), mControl.left_X_stick_driver());
-    mIntake.comer(mControl.right_Trigger());
-    mIntake.escupir(mControl.left_Trigger());
+    mIntake.activar(mControl.left_Trigger(), mControl.right_Trigger());
     mTapita.abrir(mControl.boton_Y());
     mTapita.cerrar(mControl.boton_A());
   }

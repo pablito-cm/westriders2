@@ -23,9 +23,9 @@ public class Drive {
 
     //constructor (define valores a tus objetos)
     public Drive(){//public + el nombre de tu clase
-    MotorDerechoAtras = new TalonSRX(0);  //(el numero dentro del paréntesis depende del número que tenga el controlador (spark))
+    MotorDerechoAtras = new TalonSRX(2);  //(el numero dentro del paréntesis depende del número que tenga el controlador (spark))
     MotorDerechoAdelante = new TalonSRX(1);
-    MotorIzquierdoAtras = new TalonSRX(2);
+    MotorIzquierdoAtras = new TalonSRX(4);
     MotorIzquierdoAdelante = new TalonSRX(3);
 
     //creo que aquí dejas speed 0, solo cambia en funciones
@@ -58,5 +58,28 @@ public class Drive {
     MotorIzquierdoAtras.set(ControlMode.PercentOutput, -realleftspeed); //se necesitan que estén en negativos para que puedan avanzar recto
     MotorIzquierdoAdelante.set(ControlMode.PercentOutput, -realleftspeed);
     }
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //AUTONOMO
+    public static void AutoChasis(double realleftspeedM1, double realleftspeedM2, double realrightspeedM1, double realrightspeedM2){
+    MotorDerechoAdelante.set(ControlMode.PercentOutput, +realrightspeedM1);
+    MotorDerechoAtras.set(ControlMode.PercentOutput, +realrightspeedM2);
+    MotorIzquierdoAdelante.set(ControlMode.PercentOutput, -realleftspeedM1);
+    MotorIzquierdoAtras.set(ControlMode.PercentOutput, -realleftspeedM2);
+}
 }
 
